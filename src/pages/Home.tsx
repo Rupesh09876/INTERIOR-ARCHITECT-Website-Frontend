@@ -110,24 +110,24 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* Slide counter */}
-      <div className="absolute bottom-10 right-8 z-10 flex items-center gap-3">
-        <span className="text-white/40 text-xs tracking-widest" style={{ fontFamily: 'var(--font-display)' }}>
+      <div className="absolute bottom-6 right-4 sm:bottom-10 sm:right-8 z-10 flex items-center gap-2 sm:gap-3">
+        <span className="text-white/40 text-[0.7rem] sm:text-xs tracking-widest" style={{ fontFamily: 'var(--font-display)' }}>
           {String(current + 1).padStart(2, '0')} / {String(HERO_SLIDES.length).padStart(2, '0')}
         </span>
-        <div className="flex gap-2">
+        <div className="flex gap-1.5 sm:gap-2">
           {HERO_SLIDES.map((_, i) => (
             <button
               key={i}
               onClick={() => { setAnimating(true); setTimeout(() => { setCurrent(i); setAnimating(false); }, 600); }}
-              className={`h-px transition-all duration-500 ${i === current ? 'w-8 bg-[#d4a53a]' : 'w-4 bg-white/30'}`}
+              className={`h-px transition-all duration-500 ${i === current ? 'w-6 sm:w-8 bg-[#d4a53a]' : 'w-3 sm:w-4 bg-white/30'}`}
               aria-label={`Go to slide ${i + 1}`}
             />
           ))}
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
+      {/* Scroll indicator — visible on tablet & desktop */}
+      <div className="hidden sm:flex absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-2">
         <ChevronDown size={18} className="text-white/40 animate-bounce" />
         <span
           style={{ fontFamily: 'var(--font-display)' }}
@@ -184,7 +184,7 @@ const IntroSection: React.FC = () => {
             </div>
             {/* Gold accent frame */}
             <div
-              className="absolute -bottom-4 -right-4 w-3/4 h-3/4 border border-[#d4a53a]/25 -z-10"
+              className="hidden sm:block absolute -bottom-4 -right-4 w-3/4 h-3/4 border border-[#d4a53a]/25 -z-10"
               aria-hidden="true"
             />
           </div>
@@ -230,12 +230,12 @@ const OurWorkSection: React.FC = () => {
         </div>
 
         {/* Filters */}
-        <div className="flex flex-wrap gap-2 mb-8">
+        <div className="flex flex-wrap gap-2 mb-8 overflow-x-auto pb-1 max-w-full">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`filter-tab ${activeCategory === cat ? 'active' : ''}`}
+              className={`filter-tab whitespace-nowrap ${activeCategory === cat ? 'active' : ''}`}
             >
               {cat}
             </button>
@@ -269,25 +269,25 @@ const FeaturedProjectSection: React.FC = () => {
   const featured = PROJECTS.find((p) => p.featured) || PROJECTS[0];
 
   return (
-    <section className="relative h-[70vh] min-h-[480px] overflow-hidden group" aria-label="Featured project">
+    <section className="relative h-[60vh] sm:h-[70vh] min-h-[400px] sm:min-h-[480px] overflow-hidden group" aria-label="Featured project">
       <img
         src={featured.coverImage}
         alt={featured.title}
         className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-[1.04]"
         loading="lazy"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0c0b0a]/85 via-[#0c0b0a]/40 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0c0b0a]/90 via-[#0c0b0a]/50 to-transparent" />
 
-      <div className="absolute inset-0 flex items-end pb-16 container-royal">
+      <div className="absolute inset-0 flex items-end pb-10 sm:pb-16 container-royal">
         <div className="max-w-xl">
-          <p className="eyebrow-light mb-4">Featured Project</p>
+          <p className="eyebrow-light mb-3 sm:mb-4">Featured Project</p>
           <h2
             style={{ fontFamily: 'var(--font-serif)' }}
             className="text-display-xl text-white font-light mb-2 leading-tight"
           >
             {featured.title}
           </h2>
-          <p className="text-white/50 text-sm mb-6">{featured.location} &nbsp;·&nbsp; {featured.category} &nbsp;·&nbsp; {featured.year}</p>
+          <p className="text-white/50 text-xs sm:text-sm mb-6">{featured.location} &nbsp;·&nbsp; {featured.category} &nbsp;·&nbsp; {featured.year}</p>
           <Link
             to={`/projects/${featured.slug}`}
             className="btn btn-outline inline-flex items-center gap-2"
@@ -309,7 +309,7 @@ const OngoingSection: React.FC = () => {
   return (
     <section ref={ref} className="reveal section-py bg-[#0c0b0a]" aria-label="Ongoing Projects">
       <div className="container-royal">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 sm:gap-8 mb-10 sm:mb-12">
           <div>
             <p className="eyebrow-light mb-3">
               <span className="w-5 h-px bg-[#d4a53a] inline-block mr-2 align-middle" />
@@ -321,7 +321,7 @@ const OngoingSection: React.FC = () => {
             >
               What We're Building
             </h2>
-            <p className="text-white/45 mt-3 text-base max-w-sm leading-relaxed">
+            <p className="text-white/45 mt-3 text-sm sm:text-base max-w-sm leading-relaxed">
               These are the spaces currently in progress — where ideas, plans and craftsmanship come together to create something extraordinary.
             </p>
           </div>
@@ -350,7 +350,7 @@ const TrustSection: React.FC = () => {
   return (
     <section ref={ref} className="reveal section-py bg-[#faf7f2]" aria-label="Why Choose Royal Touch">
       <div className="container-royal">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
             <p className="eyebrow mb-4">Why Choose Us</p>
             <h2 style={{ fontFamily: 'var(--font-serif)' }} className="text-display-lg text-[#141210] font-light mb-5">
@@ -366,16 +366,16 @@ const TrustSection: React.FC = () => {
             </Link>
           </div>
 
-          {/* Stats + image */}
-          <div className="grid grid-cols-2 gap-5">
+          {/* Stats */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
             {COMPANY_STATS.map((stat, i) => (
               <div
                 key={i}
-                className="bg-white p-6 border-t-2 border-[#d4a53a]"
+                className="bg-white p-5 sm:p-6 border-t-2 border-[#d4a53a]"
               >
                 <p
                   style={{ fontFamily: 'var(--font-serif)' }}
-                  className="text-3xl text-[#141210] font-light mb-1"
+                  className="text-2xl sm:text-3xl text-[#141210] font-light mb-1"
                 >
                   {stat.value}
                 </p>
@@ -399,9 +399,9 @@ const PhilosophySection: React.FC = () => {
   return (
     <section className="section-py bg-[#141210]" aria-label="Design philosophy">
       <div className="container-royal">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Image */}
-          <div className="aspect-[4/5] overflow-hidden">
+          <div className="aspect-[4/3] sm:aspect-[4/5] overflow-hidden">
             <img
               src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?w=900&q=85&auto=format"
               alt="Royal Touch design philosophy — architectural staircase"
@@ -412,20 +412,20 @@ const PhilosophySection: React.FC = () => {
 
           {/* Content */}
           <div>
-            <p className="eyebrow-light mb-6">Our Approach</p>
+            <p className="eyebrow-light mb-4 sm:mb-6">Our Approach</p>
             <h2
               style={{ fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}
-              className="text-display-lg text-white font-light mb-8 leading-tight"
+              className="text-display-lg text-white font-light mb-6 sm:mb-8 leading-tight"
             >
               "Design is not decoration.
               <br />It is how a space makes you feel,
               <br />function, and live."
             </h2>
-            <div className="w-12 h-px bg-[#d4a53a] mb-8" />
-            <p className="text-white/55 text-base leading-relaxed mb-5">
+            <div className="w-12 h-px bg-[#d4a53a] mb-6 sm:mb-8" />
+            <p className="text-white/55 text-sm sm:text-base leading-relaxed mb-4 sm:mb-5">
               At Royal Touch, we approach every project as an opportunity to create something genuinely meaningful — spaces that go beyond the surface to create environments that resonate on a deeper level.
             </p>
-            <p className="text-white/55 text-base leading-relaxed">
+            <p className="text-white/55 text-sm sm:text-base leading-relaxed">
               Our work is guided by a belief that great design is rooted in understanding — of people, of place, of purpose. We bring this understanding to every decision we make.
             </p>
           </div>
@@ -443,7 +443,7 @@ const ProcessSection: React.FC = () => {
   return (
     <section ref={ref} className="reveal section-py bg-[#faf7f2]" aria-label="Our process">
       <div className="container-royal">
-        <div className="mb-12">
+        <div className="mb-10 sm:mb-12">
           <p className="eyebrow mb-3">How We Work</p>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <h2 style={{ fontFamily: 'var(--font-serif)' }} className="text-display-lg text-[#141210] font-light">
@@ -459,7 +459,7 @@ const ProcessSection: React.FC = () => {
         {/* Steps */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-px bg-[#e8e5e0]">
           {PROCESS_STEPS.map((step, i) => (
-            <div key={step.number} className="bg-[#faf7f2] p-7 group hover:bg-[#141210] transition-colors duration-400">
+            <div key={step.number} className="bg-[#faf7f2] p-5 sm:p-7 group hover:bg-[#141210] transition-colors duration-400">
               <span
                 style={{ fontFamily: 'var(--font-display)', color: 'var(--gold-500)' }}
                 className="text-2xl font-light mb-4 block group-hover:text-[#d4a53a]"
@@ -472,7 +472,7 @@ const ProcessSection: React.FC = () => {
               >
                 {step.title}
               </h3>
-              <p className="text-[#6a6258] text-sm leading-relaxed group-hover:text-white/50">
+              <p className="text-[#6a6258] text-xs sm:text-sm leading-relaxed group-hover:text-white/50">
                 {step.description}
               </p>
               {i < PROCESS_STEPS.length - 1 && (
@@ -496,7 +496,7 @@ const ServicesPreview: React.FC = () => {
   return (
     <section ref={ref} className="reveal section-py bg-white" aria-label="Services overview">
       <div className="container-royal">
-        <div className="mb-12">
+        <div className="mb-10 sm:mb-12">
           <p className="eyebrow mb-3">What We Do</p>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <h2 style={{ fontFamily: 'var(--font-serif)' }} className="text-display-lg text-[#141210] font-light">
@@ -513,7 +513,7 @@ const ServicesPreview: React.FC = () => {
           {SERVICES.slice(0, 8).map((service) => (
             <div
               key={service.id}
-              className="bg-white p-7 group hover:bg-[#141210] transition-colors duration-400 cursor-pointer"
+              className="bg-white p-5 sm:p-7 group hover:bg-[#141210] transition-colors duration-400 cursor-pointer"
             >
               <span
                 style={{ fontFamily: 'var(--font-display)', color: 'var(--gold-400)' }}
@@ -523,11 +523,11 @@ const ServicesPreview: React.FC = () => {
               </span>
               <h3
                 style={{ fontFamily: 'var(--font-serif)' }}
-                className="text-xl font-light text-[#141210] mb-3 group-hover:text-white leading-snug"
+                className="text-lg sm:text-xl font-light text-[#141210] mb-3 group-hover:text-white leading-snug"
               >
                 {service.title}
               </h3>
-              <p className="text-[#6a6258] text-sm leading-relaxed group-hover:text-white/50 line-clamp-3">
+              <p className="text-[#6a6258] text-xs sm:text-sm leading-relaxed group-hover:text-white/50 line-clamp-3">
                 {service.description}
               </p>
               <div className="mt-5 flex items-center gap-2 text-[#d4a53a] opacity-0 group-hover:opacity-100 transition-opacity duration-300">

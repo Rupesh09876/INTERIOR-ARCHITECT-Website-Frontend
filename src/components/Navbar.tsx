@@ -45,22 +45,22 @@ export const Navbar: React.FC = () => {
       >
         <div className="container-royal flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group" aria-label="Royal Touch — Home">
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group" aria-label="Royal Touch — Home">
             <img
               src="/logo.png"
               alt="Royal Touch Interior & Architect Logo"
-              className="w-11 h-11 object-contain transition-transform duration-300 group-hover:scale-105"
+              className="w-9 h-9 sm:w-11 sm:h-11 object-contain transition-transform duration-300 group-hover:scale-105"
             />
-            <div className="hidden sm:block">
+            <div>
               <p
                 style={{ fontFamily: 'var(--font-display)' }}
-                className="text-xs font-bold tracking-[0.18em] text-white uppercase leading-none"
+                className="text-[0.7rem] sm:text-xs font-bold tracking-[0.16em] sm:tracking-[0.18em] text-white uppercase leading-none"
               >
                 Royal Touch
               </p>
               <p
                 style={{ fontFamily: 'var(--font-display)', color: 'var(--gold-400)' }}
-                className="text-[0.6rem] tracking-[0.15em] uppercase leading-none mt-0.5"
+                className="text-[0.55rem] sm:text-[0.6rem] tracking-[0.12em] sm:tracking-[0.15em] uppercase leading-none mt-0.5"
               >
                 Interior &amp; Architect
               </p>

@@ -42,8 +42,8 @@
   --font-display: 'Montserrat', sans-serif;
 
   /* Spacing */
-  --section-py: 6rem;
-  --container-px: 1.5rem;
+  --section-py: 3.5rem;
+  --container-px: 1.25rem;
   --container-max: 1400px;
 
   /* Transitions */
@@ -71,6 +71,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  max-width: 100vw;
 }
 
 img {
@@ -117,66 +118,71 @@ button {
 .font-sans  { font-family: var(--font-sans); }
 .font-display { font-family: var(--font-display); }
 
-/* Display / Hero sizes */
+/* Display / Hero sizes with fluid responsiveness */
 .text-display-2xl {
   font-family: var(--font-serif);
-  font-size: clamp(3rem, 7vw, 7rem);
+  font-size: clamp(2.25rem, 5.5vw, 6.5rem);
   font-weight: 300;
-  line-height: 1.05;
+  line-height: 1.08;
   letter-spacing: -0.02em;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .text-display-xl {
   font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 5.5vw, 5.5rem);
+  font-size: clamp(1.85rem, 4.5vw, 4.8rem);
   font-weight: 300;
-  line-height: 1.08;
+  line-height: 1.1;
   letter-spacing: -0.02em;
+  overflow-wrap: break-word;
 }
 
 .text-display-lg {
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 4vw, 4rem);
+  font-size: clamp(1.65rem, 3.8vw, 3.6rem);
   font-weight: 300;
-  line-height: 1.1;
+  line-height: 1.12;
   letter-spacing: -0.01em;
+  overflow-wrap: break-word;
 }
 
 .text-display-md {
   font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 3vw, 3rem);
+  font-size: clamp(1.35rem, 2.8vw, 2.75rem);
   font-weight: 400;
-  line-height: 1.15;
+  line-height: 1.18;
+  overflow-wrap: break-word;
 }
 
 /* Eyebrow Labels */
 .eyebrow {
   font-family: var(--font-display);
-  font-size: 0.7rem;
+  font-size: 0.6875rem;
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gold-500);
 }
 
 .eyebrow-light {
   font-family: var(--font-display);
-  font-size: 0.7rem;
+  font-size: 0.6875rem;
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gold-300);
 }
 
 /* Body text */
 .body-lg {
-  font-size: 1.0625rem;
+  font-size: clamp(0.95rem, 1.2vw, 1.0625rem);
   line-height: 1.75;
   color: var(--charcoal-600);
 }
 
 .body-md {
-  font-size: 0.9375rem;
+  font-size: clamp(0.875rem, 1vw, 0.9375rem);
   line-height: 1.7;
   color: var(--charcoal-500);
 }
@@ -200,15 +206,31 @@ button {
   padding-right: var(--container-px);
 }
 
+@media (max-width: 479px) {
+  :root {
+    --container-px: 1rem;
+    --section-py: 3rem;
+  }
+}
+
 @media (min-width: 768px) {
   :root {
-    --container-px: 3rem;
+    --container-px: 2.5rem;
+    --section-py: 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-px: 3.5rem;
+    --section-py: 6rem;
   }
 }
 
 @media (min-width: 1280px) {
   :root {
-    --container-px: 5rem;
+    --container-px: 4.5rem;
+    --section-py: 6.5rem;
   }
 }
 
@@ -658,13 +680,20 @@ button {
 .mobile-nav-overlay {
   position: fixed;
   inset: 0;
-  background: var(--charcoal-950);
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background: rgba(12, 11, 10, 0.98);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   z-index: 999;
   display: flex;
   flex-direction: column;
-  padding: 2rem var(--container-px);
+  padding: 1.5rem var(--container-px) 2rem;
   transform: translateX(100%);
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .mobile-nav-overlay.open {

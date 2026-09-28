@@ -47,16 +47,16 @@ const OngoingProjectDetail: React.FC = () => {
 
         <Link
           to="/ongoing-projects"
-          className="absolute top-24 left-8 z-10 flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm"
+          className="absolute top-20 sm:top-24 left-4 sm:left-8 z-10 flex items-center gap-2 text-white/70 hover:text-white transition-colors text-xs sm:text-sm bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-sm"
           style={{ fontFamily: 'var(--font-display)', letterSpacing: '0.1em' }}
         >
-          <ArrowLeft size={16} />
+          <ArrowLeft size={14} />
           Ongoing Projects
         </Link>
 
-        <div className="absolute bottom-0 left-0 right-0 container-royal pb-12">
+        <div className="absolute bottom-0 left-0 right-0 container-royal pb-8 sm:pb-12">
           {/* IN PROGRESS badge */}
-          <div className="mb-4">
+          <div className="mb-3 sm:mb-4">
             <span className="badge badge-progress">In Progress</span>
           </div>
           <p className="eyebrow-light mb-3">
@@ -66,40 +66,40 @@ const OngoingProjectDetail: React.FC = () => {
           <h1 style={{ fontFamily: 'var(--font-serif)' }} className="text-display-xl text-white font-light">
             {project.title}
           </h1>
-          <p className="text-white/50 mt-2">{project.location}</p>
+          <p className="text-white/50 text-xs sm:text-sm mt-2">{project.location}</p>
         </div>
       </section>
 
       {/* Project info + Phase timeline */}
       <section className="section-py" aria-label="Project progress">
         <div className="container-royal">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16">
             {/* Overview */}
             <div className="lg:col-span-2">
               <p className="eyebrow-light mb-4">About This Project</p>
               <p style={{ fontFamily: 'var(--font-serif)' }} className="text-display-md text-white font-light mb-6 leading-relaxed">
                 {project.overview}
               </p>
-              <p className="text-white/50 text-base leading-relaxed">{project.description}</p>
+              <p className="text-white/50 text-sm sm:text-base leading-relaxed">{project.description}</p>
 
               {/* Updates */}
               {project.updates.length > 0 && (
-                <div className="mt-12">
-                  <p className="eyebrow-light mb-8">Latest Updates</p>
-                  <div className="space-y-10">
+                <div className="mt-10 sm:mt-12">
+                  <p className="eyebrow-light mb-6 sm:mb-8">Latest Updates</p>
+                  <div className="space-y-8 sm:space-y-10">
                     {project.updates.map((update, i) => (
-                      <div key={i} className="border-l border-[#d4a53a]/30 pl-6">
+                      <div key={i} className="border-l border-[#d4a53a]/30 pl-4 sm:pl-6">
                         <p style={{ fontFamily: 'var(--font-display)' }} className="text-[0.65rem] tracking-[0.12em] uppercase text-[#d4a53a] mb-2">
                           {update.date}
                         </p>
-                        <h3 style={{ fontFamily: 'var(--font-serif)' }} className="text-lg font-light text-white mb-3">
+                        <h3 style={{ fontFamily: 'var(--font-serif)' }} className="text-base sm:text-lg font-light text-white mb-3">
                           {update.title}
                         </h3>
-                        <p className="text-white/50 text-sm leading-relaxed mb-4">
+                        <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4">
                           {update.description}
                         </p>
                         {update.images.length > 0 && (
-                          <div className="grid grid-cols-2 gap-3">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             {update.images.map((img, j) => (
                               <div key={j} className="aspect-[4/3] overflow-hidden">
                                 <img

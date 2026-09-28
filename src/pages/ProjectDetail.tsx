@@ -52,30 +52,30 @@ const ProjectDetail: React.FC = () => {
         {/* Back button */}
         <Link
           to="/projects"
-          className="absolute top-24 left-8 z-10 flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm"
+          className="absolute top-20 sm:top-24 left-4 sm:left-8 z-10 flex items-center gap-2 text-white/70 hover:text-white transition-colors text-xs sm:text-sm bg-black/30 backdrop-blur-md px-3 py-1.5 rounded-sm"
           style={{ fontFamily: 'var(--font-display)', letterSpacing: '0.1em' }}
         >
-          <ArrowLeft size={16} />
+          <ArrowLeft size={14} />
           Our Work
         </Link>
 
         {/* Project title overlay */}
-        <div className="absolute bottom-0 left-0 right-0 container-royal pb-12">
-          <p className="eyebrow-light mb-4">
+        <div className="absolute bottom-0 left-0 right-0 container-royal pb-8 sm:pb-12">
+          <p className="eyebrow-light mb-3 sm:mb-4">
             <span className="w-5 h-px bg-[#d4a53a] inline-block mr-2 align-middle" />
             {project.category}
           </p>
           <h1 style={{ fontFamily: 'var(--font-serif)' }} className="text-display-xl text-white font-light leading-tight">
             {project.title}
           </h1>
-          <p className="text-white/50 mt-2">{project.location} &nbsp;·&nbsp; {project.year}</p>
+          <p className="text-white/50 text-xs sm:text-sm mt-2">{project.location} &nbsp;·&nbsp; {project.year}</p>
         </div>
       </section>
 
       {/* PROJECT INFO */}
       <section className="section-py bg-[#faf7f2]" aria-label="Project information">
         <div className="container-royal">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16">
             {/* Overview */}
             <div className="lg:col-span-2">
               <p className="eyebrow mb-4">Project Overview</p>
@@ -83,21 +83,21 @@ const ProjectDetail: React.FC = () => {
                 {project.overview}
               </p>
               <div className="divider-gold mb-8" />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10">
                 <div>
-                  <h3 style={{ fontFamily: 'var(--font-serif)' }} className="text-lg font-light text-[#141210] mb-3">Concept</h3>
+                  <h3 style={{ fontFamily: 'var(--font-serif)' }} className="text-lg font-light text-[#141210] mb-2 sm:mb-3">Concept</h3>
                   <p className="body-md">{project.concept}</p>
                 </div>
                 <div>
-                  <h3 style={{ fontFamily: 'var(--font-serif)' }} className="text-lg font-light text-[#141210] mb-3">Design Approach</h3>
+                  <h3 style={{ fontFamily: 'var(--font-serif)' }} className="text-lg font-light text-[#141210] mb-2 sm:mb-3">Design Approach</h3>
                   <p className="body-md">{project.designApproach}</p>
                 </div>
                 <div>
-                  <h3 style={{ fontFamily: 'var(--font-serif)' }} className="text-lg font-light text-[#141210] mb-3">Materials</h3>
+                  <h3 style={{ fontFamily: 'var(--font-serif)' }} className="text-lg font-light text-[#141210] mb-2 sm:mb-3">Materials</h3>
                   <p className="body-md">{project.materials}</p>
                 </div>
                 <div>
-                  <h3 style={{ fontFamily: 'var(--font-serif)' }} className="text-lg font-light text-[#141210] mb-3">Execution</h3>
+                  <h3 style={{ fontFamily: 'var(--font-serif)' }} className="text-lg font-light text-[#141210] mb-2 sm:mb-3">Execution</h3>
                   <p className="body-md">{project.execution}</p>
                 </div>
               </div>
@@ -105,7 +105,7 @@ const ProjectDetail: React.FC = () => {
 
             {/* Sidebar info */}
             <div>
-              <div className="bg-white p-8 border-t-2 border-[#d4a53a]">
+              <div className="bg-white p-6 sm:p-8 border-t-2 border-[#d4a53a]">
                 <h3 style={{ fontFamily: 'var(--font-display)' }} className="text-[0.7rem] tracking-[0.15em] uppercase text-[#8a5f1c] mb-6">
                   Project Details
                 </h3>
@@ -150,11 +150,11 @@ const ProjectDetail: React.FC = () => {
       {/* GALLERY */}
       <section className="section-py bg-white" aria-label="Project gallery">
         <div className="container-royal">
-          <p className="eyebrow mb-8">Project Gallery</p>
-          <div className="grid grid-cols-1 gap-4">
+          <p className="eyebrow mb-6 sm:mb-8">Project Gallery</p>
+          <div className="grid grid-cols-1 gap-3 sm:gap-4">
             {/* First image — full width */}
             {project.gallery[0] && (
-              <div className="aspect-[16/7] overflow-hidden">
+              <div className="aspect-[16/9] sm:aspect-[16/7] overflow-hidden">
                 <img
                   src={project.gallery[0]}
                   alt={`${project.title} — gallery image 1`}
@@ -163,9 +163,9 @@ const ProjectDetail: React.FC = () => {
                 />
               </div>
             )}
-            {/* Two column */}
+            {/* Two column on sm+ */}
             {project.gallery.length > 2 && (
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 {project.gallery.slice(1, 3).map((img, i) => (
                   <div key={i} className="aspect-[4/3] overflow-hidden">
                     <img
@@ -180,7 +180,7 @@ const ProjectDetail: React.FC = () => {
             )}
             {/* Remaining */}
             {project.gallery.slice(3).map((img, i) => (
-              <div key={i} className="aspect-[16/7] overflow-hidden">
+              <div key={i} className="aspect-[16/9] sm:aspect-[16/7] overflow-hidden">
                 <img
                   src={img}
                   alt={`${project.title} — gallery image ${i + 4}`}
@@ -196,29 +196,29 @@ const ProjectDetail: React.FC = () => {
       {/* PREV / NEXT NAV */}
       <section className="bg-[#faf7f2] border-t border-[#e8e5e0]" aria-label="Project navigation">
         <div className="container-royal">
-          <div className="grid grid-cols-2 divide-x divide-[#e8e5e0]">
+          <div className="flex flex-col sm:flex-row sm:divide-x divide-y sm:divide-y-0 divide-[#e8e5e0]">
             {prevProject ? (
-              <Link to={`/projects/${prevProject.slug}`} className="py-10 pr-8 group flex items-center gap-4">
-                <ArrowLeft size={20} className="text-[#c8bfb0] group-hover:text-[#d4a53a] transition-colors flex-shrink-0" />
+              <Link to={`/projects/${prevProject.slug}`} className="py-6 sm:py-10 sm:pr-8 flex-1 group flex items-center gap-4">
+                <ArrowLeft size={18} className="text-[#c8bfb0] group-hover:text-[#d4a53a] transition-colors flex-shrink-0" />
                 <div>
                   <p style={{ fontFamily: 'var(--font-display)' }} className="text-[0.6rem] tracking-[0.12em] uppercase text-[#c8bfb0] mb-1">Previous</p>
-                  <p style={{ fontFamily: 'var(--font-serif)' }} className="text-lg font-light text-[#141210] group-hover:text-[#8a5f1c] transition-colors">
+                  <p style={{ fontFamily: 'var(--font-serif)' }} className="text-base sm:text-lg font-light text-[#141210] group-hover:text-[#8a5f1c] transition-colors">
                     {prevProject.title}
                   </p>
                 </div>
               </Link>
-            ) : <div />}
+            ) : <div className="flex-1" />}
             {nextProject ? (
-              <Link to={`/projects/${nextProject.slug}`} className="py-10 pl-8 group flex items-center justify-end gap-4 text-right">
+              <Link to={`/projects/${nextProject.slug}`} className="py-6 sm:py-10 sm:pl-8 flex-1 group flex items-center justify-end gap-4 text-right">
                 <div>
                   <p style={{ fontFamily: 'var(--font-display)' }} className="text-[0.6rem] tracking-[0.12em] uppercase text-[#c8bfb0] mb-1">Next</p>
-                  <p style={{ fontFamily: 'var(--font-serif)' }} className="text-lg font-light text-[#141210] group-hover:text-[#8a5f1c] transition-colors">
+                  <p style={{ fontFamily: 'var(--font-serif)' }} className="text-base sm:text-lg font-light text-[#141210] group-hover:text-[#8a5f1c] transition-colors">
                     {nextProject.title}
                   </p>
                 </div>
-                <ArrowRight size={20} className="text-[#c8bfb0] group-hover:text-[#d4a53a] transition-colors flex-shrink-0" />
+                <ArrowRight size={18} className="text-[#c8bfb0] group-hover:text-[#d4a53a] transition-colors flex-shrink-0" />
               </Link>
-            ) : <div />}
+            ) : <div className="flex-1" />}
           </div>
         </div>
       </section>

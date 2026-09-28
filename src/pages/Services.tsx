@@ -29,12 +29,12 @@ const Services: React.FC = () => {
             aria-label={`Service: ${service.title}`}
           >
             <div className="container-royal">
-              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${i % 2 !== 0 ? 'lg:direction-rtl' : ''}`}>
-                {/* Content — alternates sides */}
+              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center`}>
+                {/* Content — alternates sides on lg */}
                 <div className={i % 2 !== 0 ? 'lg:order-2' : ''}>
                   <span
                     style={{ fontFamily: 'var(--font-serif)', color: 'var(--gold-500)' }}
-                    className="text-6xl font-light leading-none mb-4 block"
+                    className="text-4xl sm:text-6xl font-light leading-none mb-3 sm:mb-4 block"
                   >
                     {service.number}
                   </span>

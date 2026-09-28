@@ -63,7 +63,7 @@ export const PageHero: React.FC<PageHeroProps> = ({
   overlay = true,
 }) => {
   return (
-    <section className="relative h-[50vh] min-h-[380px] flex items-end pb-16 overflow-hidden">
+    <section className="relative h-[45vh] sm:h-[50vh] min-h-[320px] sm:min-h-[380px] flex items-end pb-10 sm:pb-16 pt-24 overflow-hidden">
       {backgroundImage ? (
         <>
           <img
@@ -72,7 +72,7 @@ export const PageHero: React.FC<PageHeroProps> = ({
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover"
           />
-          {overlay && <div className="absolute inset-0 bg-[#0c0b0a]/65" />}
+          {overlay && <div className="absolute inset-0 bg-[#0c0b0a]/70" />}
         </>
       ) : (
         <div className="absolute inset-0 bg-[#0c0b0a]" />
@@ -80,7 +80,7 @@ export const PageHero: React.FC<PageHeroProps> = ({
 
       <div className="container-royal relative z-10">
         {eyebrow && (
-          <p className="eyebrow-light mb-4">
+          <p className="eyebrow-light mb-3 sm:mb-4">
             <span className="inline-block w-6 h-px bg-[#d4a53a] mr-2 align-middle" />
             {eyebrow}
           </p>
@@ -92,7 +92,7 @@ export const PageHero: React.FC<PageHeroProps> = ({
           {title}
         </h1>
         {subtitle && (
-          <p className="text-white/55 mt-4 text-base max-w-xl leading-relaxed">
+          <p className="text-white/55 mt-3 sm:mt-4 text-sm sm:text-base max-w-xl leading-relaxed">
             {subtitle}
           </p>
         )}

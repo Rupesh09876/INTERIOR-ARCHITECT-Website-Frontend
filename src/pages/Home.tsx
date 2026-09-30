@@ -52,12 +52,14 @@ const HeroSection: React.FC = () => {
   const slide = HERO_SLIDES[current];
 
   return (
-    <section className="relative w-full h-screen min-h-[600px] overflow-hidden" aria-label="Hero">
-      {/* Background images */}
+    <section
+      className="relative w-full h-[380px] md:h-screen md:min-h-[600px] overflow-hidden"
+      aria-label="Hero"
+    >      {/* Background images */}
       {HERO_SLIDES.map((s, i) => (
         <div
           key={i}
-          className="absolute inset-0 transition-opacity duration-1000"
+          className="absolute inset-x-0 top-4 bottom-0 md:inset-0 transition-opacity duration-1000"
           style={{ opacity: i === current ? 1 : 0 }}
           aria-hidden={i !== current}
         >
@@ -75,7 +77,8 @@ const HeroSection: React.FC = () => {
       <div className="absolute inset-0 bg-gradient-to-t from-[#0c0b0a]/60 via-transparent to-transparent" />
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-center container-royal">
+      <div
+        className="relative z-10 container-royal w-full h-full px-5 pt-32 pb-20 flex flex-col justify-center md:px-8 md:py-0">
         <div
           className="max-w-3xl"
           style={{
@@ -84,26 +87,25 @@ const HeroSection: React.FC = () => {
             transition: 'opacity 0.6s ease, transform 0.6s ease',
           }}
         >
-          <p className="eyebrow-light mb-6 flex items-center gap-3">
+          <p className="eyebrow-light mb-3 sm:mb-5 flex items-center gap-2 sm:gap-3 text-[9px] sm:text-xs">
             <span className="w-8 h-px bg-[#d4a53a]" />
             {slide.eyebrow}
           </p>
           <h1
             style={{ fontFamily: 'var(--font-serif)' }}
-            className="text-display-2xl text-white font-light leading-[1.05] mb-6 whitespace-pre-line"
+            className="text-[2rem] sm:text-5xl md:text-display-2xl text-white font-light leading-[1.05] mb-4 sm:mb-6 whitespace-pre-line"
           >
             {slide.title}
           </h1>
-          <p className="text-white/65 text-base md:text-lg leading-relaxed max-w-lg mb-10">
+          <p className="text-white/65 text-[0.8125rem] sm:text-base md:text-lg leading-relaxed max-w-lg mb-6 sm:mb-10">
             Royal Touch creates refined interiors and architectural spaces where thoughtful design, craftsmanship, and functionality come together.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <Link to="/projects" className="btn btn-primary">
+          <div className="flex flex-wrap gap-2 sm:gap-4">
+            <Link to="/projects" className="btn btn-primary text-[10px] sm:text-xs px-4 py-2.5 sm:px-6 sm:py-3">
               Explore Our Work
               <ArrowRight size={15} strokeWidth={2} />
             </Link>
-            <Link to="/contact" className="btn btn-outline">
-              Start a Project
+            <Link to="/contact" className="btn btn-outline text-[10px] sm:text-xs px-4 py-2.5 sm:px-6 sm:py-3">            Start a Project
             </Link>
           </div>
         </div>
@@ -208,10 +210,10 @@ const OurWorkSection: React.FC = () => {
     : PROJECTS.filter((p) => p.category === activeCategory);
 
   return (
-    <section ref={ref} className="reveal section-py bg-white" aria-label="Our Work">
-      <div className="container-royal">
+    <section ref={ref} className="reveal py-20 sm:py-28 bg-white" aria-label="Our Work">
+      <div className="container-royal px-4 sm:px-6 lg:px-8">
         {/* Header row */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
           <div>
             <p className="eyebrow mb-3">Our Work</p>
             <h2 style={{ fontFamily: 'var(--font-serif)' }} className="text-display-lg text-[#141210] font-light">
@@ -230,28 +232,28 @@ const OurWorkSection: React.FC = () => {
         </div>
 
         {/* Filters */}
-        <div className="flex flex-wrap gap-2 mb-8 overflow-x-auto pb-1 max-w-full">
+        <div className="flex flex-wrap gap-3 mb-10 sm:mb-12 overflow-x-auto pb-2 max-w-full">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`filter-tab whitespace-nowrap ${activeCategory === cat ? 'active' : ''}`}
+              className={`filter-tab whitespace-nowrap px-5 py-2.5 text-xs font-medium tracking-[0.1em] transition-all duration-300 ${activeCategory === cat ? 'active' : ''}`}
             >
               {cat}
             </button>
           ))}
         </div>
 
-        {/* Project Grid — matches UI reference 4-column layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Project Grid — matches UI reference 4-column grid layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {filtered.slice(0, 4).map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
 
-        {/* Bottom row — larger asymmetric cards */}
+        {/* Bottom row cards */}
         {filtered.length > 4 && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-6 sm:mt-8">
             {filtered.slice(4, 7).map((project, i) => (
               <ProjectCard key={project.id} project={project} variant={i === 1 ? 'large' : 'default'} />
             ))}

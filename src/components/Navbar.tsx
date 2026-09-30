@@ -37,11 +37,10 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? 'py-3 bg-[#0c0b0a]/95 backdrop-blur-sm border-b border-white/5 shadow-xl'
-            : 'py-5 bg-transparent'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+            ? 'py-3.5 bg-[#0c0b0a]/95 backdrop-blur-md border-b border-white/10 shadow-2xl'
+            : 'py-5 bg-gradient-to-b from-[#0c0b0a]/90 via-[#0c0b0a]/50 to-transparent'
+          }`}
       >
         <div className="container-royal flex items-center justify-between">
           {/* Logo */}
@@ -54,13 +53,13 @@ export const Navbar: React.FC = () => {
             <div>
               <p
                 style={{ fontFamily: 'var(--font-display)' }}
-                className="text-[0.7rem] sm:text-xs font-bold tracking-[0.16em] sm:tracking-[0.18em] text-white uppercase leading-none"
+                className="text-[0.7rem] sm:text-xs font-bold tracking-[0.16em] sm:tracking-[0.18em] uppercase leading-none text-white transition-colors duration-300"
               >
                 Royal Touch
               </p>
               <p
-                style={{ fontFamily: 'var(--font-display)', color: 'var(--gold-400)' }}
-                className="text-[0.55rem] sm:text-[0.6rem] tracking-[0.12em] sm:tracking-[0.15em] uppercase leading-none mt-0.5"
+                style={{ fontFamily: 'var(--font-display)' }}
+                className="text-[0.55rem] sm:text-[0.6rem] tracking-[0.12em] sm:tracking-[0.15em] uppercase leading-none mt-0.5 text-[#d4a53a] transition-colors duration-300"
               >
                 Interior &amp; Architect
               </p>
@@ -74,22 +73,18 @@ export const Navbar: React.FC = () => {
                 key={link.to}
                 to={link.to}
                 end={link.to === '/'}
-                className={({ isActive }) =>
-                  `font-display text-xs font-medium tracking-[0.12em] uppercase transition-all duration-300 relative pb-0.5 ${
-                    isActive
-                      ? 'text-[#d4a53a]'
-                      : 'text-white/70 hover:text-white'
-                  }`
-                }
-                style={{ fontFamily: 'var(--font-display)' }}
+                className={({ isActive }) => `nav-link-item ${isActive ? 'active' : ''}`}
+                style={({ isActive }) => ({
+                  fontFamily: 'var(--font-display)',
+                  color: isActive ? '#d4a53a' : '#ffffff',
+                })}
               >
                 {({ isActive }) => (
                   <>
                     {link.label}
                     <span
-                      className={`absolute bottom-0 left-0 h-px bg-[#d4a53a] transition-all duration-300 ${
-                        isActive ? 'w-full' : 'w-0 group-hover:w-full'
-                      }`}
+                      className={`absolute bottom-0 left-0 h-[2px] bg-[#d4a53a] transition-all duration-300 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                        }`}
                     />
                   </>
                 )}
@@ -110,11 +105,11 @@ export const Navbar: React.FC = () => {
             {/* Hamburger */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden w-10 h-10 flex items-center justify-center text-white transition-colors hover:text-[#d4a53a]"
+              className="lg:hidden w-10 h-10 flex items-center justify-center text-white hover:text-[#d4a53a] transition-colors duration-300"
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
             >
-              {menuOpen ? <X size={22} /> : <Menu size={22} />}
+              {menuOpen ? <X size={24} className="text-white" /> : <Menu size={24} className="text-white" />}
             </button>
           </div>
         </div>
@@ -126,7 +121,7 @@ export const Navbar: React.FC = () => {
         aria-hidden={!menuOpen}
       >
         {/* Top bar */}
-        <div className="flex items-center justify-between mb-12">
+        <div className="flex items-center justify-between mb-10">
           <Link to="/" className="flex items-center gap-3">
             <img src="/logo.png" alt="Royal Touch Logo" className="w-10 h-10 object-contain" />
             <div>
@@ -140,10 +135,10 @@ export const Navbar: React.FC = () => {
           </Link>
           <button
             onClick={() => setMenuOpen(false)}
-            className="w-10 h-10 flex items-center justify-center text-white/70 hover:text-[#d4a53a] transition-colors"
+            className="w-10 h-10 flex items-center justify-center text-white hover:text-[#d4a53a] transition-colors"
             aria-label="Close menu"
           >
-            <X size={24} />
+            <X size={26} />
           </button>
         </div>
 
@@ -156,16 +151,16 @@ export const Navbar: React.FC = () => {
                   to={link.to}
                   end={link.to === '/'}
                   className={({ isActive }) =>
-                    `block py-3 border-b border-white/5 transition-all duration-300 ${
-                      isActive ? 'text-[#d4a53a]' : 'text-white/80 hover:text-white hover:pl-2'
+                    `block py-3 border-b border-white/10 transition-all duration-300 ${isActive ? 'font-normal' : 'hover:pl-2'
                     }`
                   }
-                  style={{
+                  style={({ isActive }) => ({
                     fontFamily: 'var(--font-serif)',
                     fontSize: 'clamp(1.5rem, 4vw, 2rem)',
                     fontWeight: 300,
+                    color: isActive ? '#d4a53a' : '#ffffff',
                     animationDelay: `${i * 0.05}s`,
-                  }}
+                  })}
                 >
                   {link.label}
                 </NavLink>
@@ -175,13 +170,13 @@ export const Navbar: React.FC = () => {
         </nav>
 
         {/* Bottom Contact */}
-        <div className="mt-auto pt-8 border-t border-white/10">
-          <p style={{ fontFamily: 'var(--font-display)' }} className="eyebrow-light mb-4">Get in Touch</p>
-          <p className="text-white/60 text-sm mb-1">{SITE_CONFIG.email}</p>
-          <p className="text-white/60 text-sm mb-4">{SITE_CONFIG.phone}</p>
+        <div className="mt-auto pt-6 border-t border-white/10">
+          <p style={{ fontFamily: 'var(--font-display)' }} className="eyebrow-light mb-3">Get in Touch</p>
+          <p className="text-white/70 text-sm mb-1">{SITE_CONFIG.email}</p>
+          <p className="text-white/70 text-sm mb-4">{SITE_CONFIG.phone}</p>
           <Link
             to="/contact"
-            className="btn btn-gold w-full justify-center"
+            className="btn btn-gold w-full justify-center text-white"
             onClick={() => setMenuOpen(false)}
           >
             Start a Project

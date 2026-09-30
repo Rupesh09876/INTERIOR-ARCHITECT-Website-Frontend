@@ -111,12 +111,33 @@ button {
 }
 
 /* ============================================================
-   TYPOGRAPHY SYSTEM
+   TYPOGRAPHY & NAVBAR SYSTEM
    ============================================================ */
 
 .font-serif { font-family: var(--font-serif); }
 .font-sans  { font-family: var(--font-sans); }
 .font-display { font-family: var(--font-display); }
+
+.nav-link-item {
+  color: #ffffff !important;
+  font-family: var(--font-display) !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  transition: color 0.3s ease !important;
+  position: relative;
+  padding-bottom: 0.25rem;
+  text-decoration: none !important;
+}
+
+.nav-link-item:hover {
+  color: #d4a53a !important;
+}
+
+.nav-link-item.active {
+  color: #d4a53a !important;
+}
 
 /* Display / Hero sizes with fluid responsiveness */
 .text-display-2xl {

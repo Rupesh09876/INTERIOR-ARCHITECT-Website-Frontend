@@ -21,7 +21,7 @@ export const CTASection: React.FC<CTASectionProps> = ({
 }) => {
   return (
     <section
-      className="relative py-20 sm:py-32 overflow-hidden"
+      className="relative pt-24 pb-28 sm:pt-32 sm:pb-36 lg:pt-36 lg:pb-44 overflow-hidden"
       aria-label="Call to action"
     >
       {/* Background */}
@@ -51,10 +51,12 @@ export const CTASection: React.FC<CTASectionProps> = ({
           <p className="text-white/60 text-sm sm:text-base mb-8 sm:mb-10 leading-relaxed max-w-md">
             {subtext}
           </p>
-          <Link to={ctaTo} className="btn btn-gold inline-flex max-w-full justify-center">
-            {ctaLabel}
-            <ArrowRight size={15} strokeWidth={2} />
-          </Link>
+          <div className="pt-2">
+            <Link to={ctaTo} className="btn btn-gold inline-flex max-w-full justify-center shadow-lg">
+              {ctaLabel}
+              <ArrowRight size={15} strokeWidth={2} />
+            </Link>
+          </div>
         </div>
       </div>
     </section>

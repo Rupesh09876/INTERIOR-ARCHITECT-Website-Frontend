@@ -197,6 +197,7 @@ const IntroSection: React.FC = () => {
 };
 
 // -----------------------------------------------
+// -----------------------------------------------
 // OUR WORK SECTION
 // -----------------------------------------------
 const CATEGORIES = ['All', 'Residential', 'Commercial', 'Hospitality', 'Office', 'Renovation'] as const;
@@ -210,10 +211,15 @@ const OurWorkSection: React.FC = () => {
     : PROJECTS.filter((p) => p.category === activeCategory);
 
   return (
-    <section ref={ref} className="reveal py-20 sm:py-28 bg-white" aria-label="Our Work">
+    <section
+      ref={ref}
+      className="reveal bg-[#faf7f2] relative z-10"
+      style={{ paddingTop: '5.5rem', paddingBottom: '8rem' }}
+      aria-label="Our Work"
+    >
       <div className="container-royal px-4 sm:px-6 lg:px-8">
         {/* Header row */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12">
           <div>
             <p className="eyebrow mb-3">Our Work</p>
             <h2 style={{ fontFamily: 'var(--font-serif)' }} className="text-display-lg text-[#141210] font-light">
@@ -221,7 +227,7 @@ const OurWorkSection: React.FC = () => {
             </h2>
           </div>
           <div className="flex flex-col items-start md:items-end gap-4">
-            <p className="body-md max-w-sm text-right hidden md:block">
+            <p className="body-md max-w-sm text-left md:text-right hidden md:block">
               From cozy homes to modern commercial spaces, our projects reflect a commitment to quality, creativity, and detail.
             </p>
             <Link to="/projects" className="btn btn-outline-dark text-xs py-2.5 px-5">
@@ -231,32 +237,29 @@ const OurWorkSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Filters */}
-        <div className="flex flex-wrap gap-3 mb-10 sm:mb-12 overflow-x-auto pb-2 max-w-full">
+        {/* Filters with generous padding and margin between buttons and project cards */}
+        <div className="filter-tabs-wrapper mb-8 sm:mb-12 pb-3 overflow-x-auto max-w-full" style={{ marginBottom: '2.5rem' }}>
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`filter-tab whitespace-nowrap px-5 py-2.5 text-xs font-medium tracking-[0.1em] transition-all duration-300 ${activeCategory === cat ? 'active' : ''}`}
+              className={`filter-tab whitespace-nowrap px-5 py-2.5 text-xs font-medium tracking-[0.1em] transition-all duration-300 ${activeCategory === cat ? 'active shadow-sm' : ''}`}
             >
               {cat}
             </button>
           ))}
         </div>
 
-        {/* Project Grid — matches UI reference 4-column grid layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {filtered.slice(0, 4).map((project) => (
+        {/* Project Grid — Unified, beautifully balanced responsive 3-column grid with top & bottom padding */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 pt-2 pb-4">
+          {filtered.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
 
-        {/* Bottom row cards */}
-        {filtered.length > 4 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mt-6 sm:mt-8">
-            {filtered.slice(4, 7).map((project, i) => (
-              <ProjectCard key={project.id} project={project} variant={i === 1 ? 'large' : 'default'} />
-            ))}
+        {filtered.length === 0 && (
+          <div className="py-16 text-center">
+            <p className="text-[#6a6258] text-sm">No projects found in this category.</p>
           </div>
         )}
       </div>
@@ -309,32 +312,32 @@ const FeaturedProjectSection: React.FC = () => {
 const OngoingSection: React.FC = () => {
   const ref = useReveal() as React.RefObject<HTMLElement>;
   return (
-    <section ref={ref} className="reveal section-py bg-[#0c0b0a]" aria-label="Ongoing Projects">
+    <section ref={ref} className="reveal section-py bg-white border-t border-b border-[#e8e5e0]" aria-label="Ongoing Projects">
       <div className="container-royal">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 sm:gap-8 mb-10 sm:mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 sm:gap-8 mb-10 sm:mb-14">
           <div>
-            <p className="eyebrow-light mb-3">
-              <span className="w-5 h-px bg-[#d4a53a] inline-block mr-2 align-middle" />
+            <p className="eyebrow mb-3 flex items-center gap-2">
+              <span className="w-5 h-px bg-[#d4a53a] inline-block align-middle" />
               On Going Projects
             </p>
             <h2
               style={{ fontFamily: 'var(--font-serif)' }}
-              className="text-display-lg text-white font-light"
+              className="text-display-lg text-[#141210] font-light"
             >
               What We're Building
             </h2>
-            <p className="text-white/45 mt-3 text-sm sm:text-base max-w-sm leading-relaxed">
+            <p className="text-[#6a6258] mt-3 text-sm sm:text-base max-w-lg leading-relaxed">
               These are the spaces currently in progress — where ideas, plans and craftsmanship come together to create something extraordinary.
             </p>
           </div>
-          <Link to="/ongoing-projects" className="btn btn-outline self-start md:self-end">
+          <Link to="/ongoing-projects" className="btn btn-outline-dark self-start md:self-end">
             View All Ongoing Projects
             <ArrowRight size={13} />
           </Link>
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {ONGOING_PROJECTS.slice(0, 3).map((project) => (
             <OngoingProjectCard key={project.id} project={project} />
           ))}

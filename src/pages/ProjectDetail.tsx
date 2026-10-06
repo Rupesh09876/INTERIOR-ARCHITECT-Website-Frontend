@@ -105,41 +105,81 @@ const ProjectDetail: React.FC = () => {
 
             {/* Sidebar info */}
             <div>
-              <div className="bg-white p-6 sm:p-8 border-t-2 border-[#d4a53a]">
-                <h3 style={{ fontFamily: 'var(--font-display)' }} className="text-[0.7rem] tracking-[0.15em] uppercase text-[#8a5f1c] mb-6">
-                  Project Details
-                </h3>
-                <ul className="space-y-5">
-                  {[
-                    { icon: MapPin, label: 'Location', value: project.location },
-                    { icon: Calendar, label: 'Year', value: String(project.year) },
-                    { icon: Tag, label: 'Category', value: project.category },
-                    { icon: Layers, label: 'Status', value: project.status },
-                  ].map(({ icon: Icon, label, value }) => (
-                    <li key={label} className="flex items-start gap-3">
-                      <Icon size={15} className="text-[#d4a53a] mt-0.5 flex-shrink-0" />
-                      <div>
-                        <p style={{ fontFamily: 'var(--font-display)' }} className="text-[0.6rem] tracking-[0.12em] uppercase text-[#8a5f1c] mb-0.5">
-                          {label}
-                        </p>
-                        <p className="text-[#141210] text-sm">{value}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+              <div className="bg-white border border-[#e8e5e0] shadow-[0_4px_24px_rgba(0,0,0,0.04)] relative overflow-hidden sticky top-24">
+                {/* Top Gold Accent Bar */}
+                <div className="h-[3px] w-full bg-gradient-to-r from-[#d4a53a] via-[#efd898] to-[#8a5f1c]" />
 
-                <div className="mt-6 pt-6 border-t border-[#e8e5e0]">
-                  <p style={{ fontFamily: 'var(--font-display)' }} className="text-[0.6rem] tracking-[0.12em] uppercase text-[#8a5f1c] mb-3">
-                    Services Provided
-                  </p>
-                  <ul className="space-y-2">
-                    {project.services.map((s) => (
-                      <li key={s} className="flex items-center gap-2 text-sm text-[#6a6258]">
-                        <span className="w-3 h-px bg-[#d4a53a]" />
-                        {s}
-                      </li>
+                <div className="p-6 sm:p-8">
+                  {/* Header */}
+                  <div className="flex items-center justify-between pb-5 border-b border-[#f0ede6] mb-6">
+                    <div className="flex items-center gap-2.5">
+                      <span className="w-1.5 h-4 bg-[#d4a53a] rounded-sm" />
+                      <h3 style={{ fontFamily: 'var(--font-display)' }} className="text-[0.75rem] font-bold tracking-[0.18em] uppercase text-[#141210]">
+                        Project Details
+                      </h3>
+                    </div>
+                    <span className="text-[0.625rem] tracking-[0.14em] uppercase px-2.5 py-1 bg-[#fdf9f0] border border-[#d4a53a]/30 text-[#8a5f1c] font-semibold rounded-sm">
+                      {project.category}
+                    </span>
+                  </div>
+
+                  {/* Details List */}
+                  <div className="space-y-3.5">
+                    {[
+                      { icon: MapPin, label: 'Location', value: project.location },
+                      { icon: Calendar, label: 'Year', value: String(project.year) },
+                      { icon: Tag, label: 'Category', value: project.category },
+                      { icon: Layers, label: 'Status', value: project.status },
+                    ].map(({ icon: Icon, label, value }) => (
+                      <div
+                        key={label}
+                        className="flex items-center gap-3.5 p-2.5 rounded-sm bg-[#faf7f2]/70 border border-[#f0ede6] hover:border-[#d4a53a]/40 transition-colors"
+                      >
+                        <div className="w-9 h-9 rounded-sm bg-white border border-[#e8e5e0] flex items-center justify-center text-[#8a5f1c] flex-shrink-0 shadow-2xs">
+                          <Icon size={16} strokeWidth={1.75} />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p style={{ fontFamily: 'var(--font-display)' }} className="text-[0.58rem] font-semibold tracking-[0.14em] uppercase text-[#8c8279] mb-0.5">
+                            {label}
+                          </p>
+                          <p className="text-[#141210] text-[0.875rem] font-medium truncate">
+                            {value}
+                          </p>
+                        </div>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
+
+                  {/* Services Provided */}
+                  <div className="mt-6 pt-6 border-t border-[#f0ede6]">
+                    <p style={{ fontFamily: 'var(--font-display)' }} className="text-[0.65rem] font-semibold tracking-[0.16em] uppercase text-[#8a5f1c] mb-3 flex items-center gap-2">
+                      <span className="w-3 h-px bg-[#d4a53a]" />
+                      Services Provided
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.services.map((s) => (
+                        <span
+                          key={s}
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#faf7f2] border border-[#e8e5e0] text-[#3a3530] text-xs rounded-sm hover:border-[#d4a53a] transition-colors"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#d4a53a]" />
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Quick Inquiry CTA */}
+                  <div className="mt-6 pt-5 border-t border-[#f0ede6]">
+                    <Link
+                      to="/contact"
+                      className="w-full py-3.5 px-4 bg-[#141210] text-white hover:text-white active:text-white focus:text-white text-[0.68rem] font-semibold tracking-[0.16em] uppercase flex items-center justify-center gap-2 group transition-opacity hover:opacity-95"
+                      style={{ fontFamily: 'var(--font-display)', color: '#ffffff' }}
+                    >
+                      <span className="text-white" style={{ color: '#ffffff' }}>Inquire About This Project</span>
+                      <ArrowRight size={13} className="text-white group-hover:translate-x-1 transition-transform duration-300" style={{ color: '#ffffff' }} />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

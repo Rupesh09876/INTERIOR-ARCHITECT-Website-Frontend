@@ -3,6 +3,8 @@ import { X, Plus, Minus, RotateCcw } from 'lucide-react';
 import type { AdminProject } from '../context/AdminDataContext';
 import type { ProjectCategory } from '../../data/projects';
 import { slugify } from '../utils/dateUtils';
+import { ImageUpload } from './ImageUpload';
+import { MultiImageUpload } from './MultiImageUpload';
 
 interface ProjectFormProps {
   project: AdminProject | null;
